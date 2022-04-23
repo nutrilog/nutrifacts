@@ -1,0 +1,21 @@
+targets:
+  $default:
+    builders:
+      drift_dev:
+        options:
+          sqlite:
+            modules:
+              - fts5
+          # Needed to use isolates
+          generate_connect_constructor: true
+          # Disable named parameters to use simpler abstract dao's
+          named_parameters: false
+          # Makes it possible to set value to null (null-safety compatibility)
+          generate_values_in_copy_with: false
+          # Generates queries from parsed AST instead of string replace
+          new_sql_code_generation: true
+          # Less generated code, but less specific error messages
+          skip_verification_code: false
+          # Don't generate toCompanion methods on data classes
+          # Use extension on domain classes to create companions if needed
+          data_class_to_companions: false

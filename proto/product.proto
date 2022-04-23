@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+message SerializedSource {
+    string name = 2;
+    string license = 3;
+    string link = 4;
+}
+
+message SerializedProduct {
+    string barcode = 2;
+    string brandName = 3;
+    string genericName = 4;
+    Nutriments nutriments = 5;
+    Quantity servingSize = 6;
+
+    message Nutriments {
+        Quantity energy = 1;
+        Quantity protein = 2;
+        Quantity carbohydrate = 3;
+        Quantity sugar = 4;
+        Quantity fat = 5;
+        Quantity fiber = 6;
+        Quantity sodium = 7;
+    }
+
+    message Quantity {
+        double value = 1;
+        Unit unit = 2;
+
+        message Unit {
+            string name = 1;
+            string symbol = 2;
+            UnitType type = 3;
+            double conversionRate = 4;
+
+            enum UnitType {
+                mass = 0; 
+                volume = 1; 
+                energy = 2;
+            }
+        }
+    }
+}
